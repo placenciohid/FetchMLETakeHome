@@ -57,7 +57,10 @@ plt.plot(df.index[-test_length:], df['Receipt_Count'][-test_length:], label='Act
 plt.plot(df.index[-test_length:], final_forecasts, label='Predicted')
 plt.title('Actual vs Predicted in Test Set - Last 65 Days')
 plt.legend()
+plt.savefig('actual_vs_predicted.png')
 plt.show()
+
+
 
 # Prediction for 2022
 steps_ahead = 365  
@@ -69,8 +72,10 @@ final_forecasts_2022 = stack_forecasts(arima_forecasts_2022, stl_forecasts_2022)
 plt.figure(figsize=(15, 5))
 plt.plot(pd.date_range('2022-01-01', periods=steps_ahead, freq='D'), final_forecasts_2022, label='Predicted')
 plt.title('Predicted Receipt Count for 2022')
+plt.savefig('Predicted.png')
 plt.legend()
 plt.show()
+
 
 final_forecasts_2022 = pd.Series(final_forecasts_2022, index=pd.date_range('2022-01-01', periods=steps_ahead, freq='D'))
 final_forecasts_2022.to_csv('final_forecasts.csv')
